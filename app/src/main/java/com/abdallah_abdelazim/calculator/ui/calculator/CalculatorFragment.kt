@@ -1,4 +1,4 @@
-package com.abdallah_abdelazim.calculator
+package com.abdallah_abdelazim.calculator.ui.calculator
 
 import android.os.Bundle
 import android.view.LayoutInflater

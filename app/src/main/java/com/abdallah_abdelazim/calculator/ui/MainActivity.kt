@@ -1,4 +1,4 @@
-package com.abdallah_abdelazim.calculator
+package com.abdallah_abdelazim.calculator.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.abdallah_abdelazim.calculator.R
 import com.abdallah_abdelazim.calculator.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
