@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">Calculator</string>
 
-    <string name="first_fragment_label">First Fragment</string>
+    <string name="calculator_fragment_label">Calculator</string>
+    <string name="hint_input_operands">1, 2, 7, 19, …</string>
+    <string name="instructions_calculator_input">Choose an operator, then enter as many operand numbers as you want separated by commas</string>
+    <string name="calculate">Calculate</string>
+    <string name="results">Results</string>
+    <string name="show_location_info">Show location info</string>
+    <string name="label_delay_time">Delay time:</string>
 </resources>

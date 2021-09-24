@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="operators">
+        <item>Operator</item>
+        <item>Add (+)</item>
+        <item>Subtract (-)</item>
+        <item>Multiply (x)</item>
+        <item>Divide (/)</item>
+    </array>
+
+</resources>
