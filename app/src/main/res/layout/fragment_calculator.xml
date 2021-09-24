@@ -1,124 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.calculator.CalculatorFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.abdallah_abdelazim.calculator.ui.calculator.CalculatorViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:layout_height="match_parent"
+        tools:context=".ui.calculator.CalculatorFragment">
 
-        <TextView
-            android:id="@+id/tv_instructions"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/instructions_calculator_input"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:padding="16dp">
 
-        <Spinner
-            android:id="@+id/spinner_operator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:entries="@array/operators"
-            android:minHeight="48dp"
-            app:layout_constraintEnd_toStartOf="@id/et_operands"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_instructions" />
+            <TextView
+                android:id="@+id/tv_instructions"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/instructions_calculator_input"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/et_operands"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/bg_edittext"
-            android:digits="123456789.,"
-            android:hint="@string/hint_input_operands"
-            android:inputType="numberDecimal"
-            android:maxLines="1"
-            android:minHeight="48dp"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="@+id/spinner_operator"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/spinner_operator"
-            app:layout_constraintTop_toTopOf="@+id/spinner_operator" />
+            <Spinner
+                android:id="@+id/spinner_operator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:entries="@array/operators"
+                android:minHeight="48dp"
+                app:layout_constraintEnd_toStartOf="@id/et_operands"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_instructions" />
 
-        <TextView
-            android:id="@+id/tv_label_delay_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
-            android:text="@string/label_delay_time"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/spinner_operator" />
+            <EditText
+                android:id="@+id/et_operands"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_edittext"
+                android:digits="123456789.,"
+                android:hint="@string/hint_input_operands"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                android:minHeight="48dp"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/spinner_operator"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/spinner_operator"
+                app:layout_constraintTop_toTopOf="@+id/spinner_operator" />
 
-        <EditText
-            android:id="@+id/et_delay"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_edittext"
-            android:hint="@string/hint_calculation_delay"
-            android:inputType="number"
-            android:maxLines="1"
-            android:minHeight="48dp"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="@id/tv_label_delay_time"
-            app:layout_constraintEnd_toEndOf="@+id/et_operands"
-            app:layout_constraintStart_toStartOf="@+id/et_operands"
-            app:layout_constraintTop_toTopOf="@+id/tv_label_delay_time" />
+            <TextView
+                android:id="@+id/tv_label_delay_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/label_delay_time"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/spinner_operator" />
 
-        <Button
-            android:id="@+id/btn_calculate"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@string/calculate"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_label_delay_time" />
+            <EditText
+                android:id="@+id/et_delay"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edittext"
+                android:hint="@string/hint_calculation_delay"
+                android:inputType="number"
+                android:maxLines="1"
+                android:minHeight="48dp"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@id/tv_label_delay_time"
+                app:layout_constraintEnd_toEndOf="@+id/et_operands"
+                app:layout_constraintStart_toStartOf="@+id/et_operands"
+                app:layout_constraintTop_toTopOf="@+id/tv_label_delay_time" />
 
-        <TextView
-            android:id="@+id/tv_label_results"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/results"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_calculate" />
+            <Button
+                android:id="@+id/btn_calculate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:onClick="@{ () -> viewModel.calculate() }"
+                android:text="@string/calculate"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_delay_time" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_results"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_label_results" />
+            <TextView
+                android:id="@+id/tv_label_results"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/results"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_calculate" />
 
-        <Button
-            android:id="@+id/btn_show_location_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:backgroundTint="@color/teal_700"
-            android:text="@string/show_location_info"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rv_results" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_results"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_results" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/btn_show_location_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:backgroundTint="@color/teal_700"
+                android:text="@string/show_location_info"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rv_results" />
 
-</androidx.core.widget.NestedScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

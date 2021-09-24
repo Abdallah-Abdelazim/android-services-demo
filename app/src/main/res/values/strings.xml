@@ -9,4 +9,6 @@
     <string name="show_location_info">Show location info</string>
     <string name="label_delay_time">Delay time:</string>
     <string name="hint_calculation_delay">Delay in seconds</string>
+    <string name="math_engine_notification_channel_name">Math engine service</string>
+    <string name="math_engine_notification_title">Math engine service is running in the background</string>
 </resources>
