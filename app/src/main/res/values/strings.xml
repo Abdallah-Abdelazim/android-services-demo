@@ -8,4 +8,5 @@
     <string name="results">Results</string>
     <string name="show_location_info">Show location info</string>
     <string name="label_delay_time">Delay time:</string>
+    <string name="hint_calculation_delay">Delay in seconds</string>
 </resources>

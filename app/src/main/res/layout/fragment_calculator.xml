@@ -68,7 +68,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_edittext"
-            android:hint="Delay in seconds"
+            android:hint="@string/hint_calculation_delay"
             android:inputType="number"
             android:maxLines="1"
             android:minHeight="48dp"
