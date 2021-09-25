@@ -5,11 +5,16 @@
     <string name="hint_input_operands">1, 2, 7, 19, …</string>
     <string name="instructions_calculator_input">Choose an operator, then enter as many operand numbers as you want separated by commas</string>
     <string name="calculate">Calculate</string>
-    <string name="results">Results</string>
+    <string name="label_pending_operations">Pending operations:</string>
     <string name="show_location_info">Show location info</string>
     <string name="label_delay_time">Delay time:</string>
     <string name="hint_calculation_delay">Delay in seconds</string>
     <string name="math_engine_notification_channel_name">Math engine service</string>
     <string name="math_engine_notification_title">Math engine service is running in the background</string>
     <string name="error_calculator_input">Please provide proper input</string>
+    <string name="item_math_op_status">Status:\n %s</string>
+    <string name="item_math_op_operator">Operator: %s</string>
+    <string name="item_math_op_operands">Operands: %s</string>
+    <string name="item_math_op_delay">Delay: %d seconds</string>
+    <string name="item_math_op_result">Result: %d</string>
 </resources>

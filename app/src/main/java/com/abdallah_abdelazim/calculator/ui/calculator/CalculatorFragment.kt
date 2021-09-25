@@ -13,6 +13,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import com.abdallah_abdelazim.calculator.R
 import com.abdallah_abdelazim.calculator.data.service.mathengine.MathEngineService
 import com.abdallah_abdelazim.calculator.data.service.mathengine.MathOperator.*
@@ -36,6 +38,9 @@ class CalculatorFragment : Fragment() {
 
     private lateinit var mathEngineService: MathEngineService
     private var isBound: Boolean = false
+
+    private lateinit var pendingQuestionsAdapter: MathOperationsAdapter
+    private lateinit var completedQuestionsAdapter: MathOperationsAdapter
 
     /** Defines callbacks for service binding, passed to bindService()  */
     private val connection = object : ServiceConnection {
@@ -79,12 +84,14 @@ class CalculatorFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupPendingOperationsRecyclerView()
+
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
         viewModel.pendingMathQuestions.observe(viewLifecycleOwner, {
             Log.d(TAG, "pendingMathQuestions = $it")
-            // TODO
+            pendingQuestionsAdapter.updateMathQuestions(it)
         })
 
         viewModel.completedMathQuestions.observe(viewLifecycleOwner, {
@@ -125,6 +132,17 @@ class CalculatorFragment : Fragment() {
 
             viewModel.calculate(mathOperator, operands, delaySecs)
         }
+    }
+
+    private fun setupPendingOperationsRecyclerView() {
+        binding.rvPendingOperations.setHasFixedSize(true)
+
+        val itemDecoration: ItemDecoration =
+            DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+        binding.rvPendingOperations.addItemDecoration(itemDecoration)
+
+        pendingQuestionsAdapter = MathOperationsAdapter()
+        binding.rvPendingOperations.adapter = pendingQuestionsAdapter
     }
 
     override fun onDestroyView() {
