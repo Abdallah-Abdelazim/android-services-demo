@@ -14,7 +14,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.RecyclerView.ItemDecoration
+import androidx.recyclerview.widget.RecyclerView.*
 import com.abdallah_abdelazim.calculator.R
 import com.abdallah_abdelazim.calculator.data.service.mathengine.MathEngineService
 import com.abdallah_abdelazim.calculator.data.service.mathengine.MathOperator.*
@@ -92,6 +92,11 @@ class CalculatorFragment : Fragment() {
         viewModel.pendingMathQuestions.observe(viewLifecycleOwner, {
             Log.d(TAG, "pendingMathQuestions = $it")
             pendingQuestionsAdapter.updateMathQuestions(it)
+            binding.tvLabelPendingOperations.visibility = if (it.size > 0) {
+                VISIBLE
+            } else {
+                GONE
+            }
         })
 
         viewModel.completedMathQuestions.observe(viewLifecycleOwner, {
