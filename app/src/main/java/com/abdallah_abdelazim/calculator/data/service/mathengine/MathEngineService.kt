@@ -10,7 +10,12 @@ import android.os.Build
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
 import androidx.core.graphics.drawable.IconCompat
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.abdallah_abdelazim.calculator.R
+import com.abdallah_abdelazim.calculator.data.model.MathQuestion
+import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
 
 class MathEngineService : Service() {
 
@@ -20,6 +25,11 @@ class MathEngineService : Service() {
     }
 
     private val binder = MathEngineBinder()
+
+    private val scheduledExecutor = Executors.newScheduledThreadPool(3)
+
+    private val _resultMathQuestion = MutableLiveData<MathQuestion>()
+    val resultMathQuestion: LiveData<MathQuestion> get() = _resultMathQuestion
 
     override fun onBind(intent: Intent): IBinder {
         return binder
@@ -59,6 +69,20 @@ class MathEngineService : Service() {
         val notification = notificationBuilder.build()
 
         startForeground(MATH_ENGINE_NOTIFICATION_ID, notification)
+    }
+
+    fun calculate(mathQuestion: MathQuestion) {
+        scheduledExecutor.schedule({
+            val result =
+                MathQuestionResolver.resolveMathQuestion(
+                    mathQuestion.operator,
+                    mathQuestion.operands
+                )
+
+            mathQuestion.result = result
+            mathQuestion.status = MathQuestion.Status.COMPLETED
+            _resultMathQuestion.postValue(mathQuestion)
+        }, mathQuestion.delaySecs, TimeUnit.SECONDS);
     }
 
     /**
