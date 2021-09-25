@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:background="@drawable/bg_edittext"
-                android:digits="123456789.,"
+                android:digits="0123456789.,"
                 android:hint="@string/hint_input_operands"
                 android:inputType="numberDecimal"
                 android:maxLines="1"
@@ -97,6 +97,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_label_delay_time" />
 
+            <View
+                android:id="@+id/line_results"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/light_grey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_calculate" />
+
             <TextView
                 android:id="@+id/tv_label_pending_operations"
                 android:layout_width="0dp"
@@ -104,11 +114,10 @@
                 android:layout_marginTop="16dp"
                 android:text="@string/label_pending_operations"
                 android:textColor="@color/black"
-                android:visibility="gone"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btn_calculate"
-                tools:visibility="visible" />
+                app:layout_constraintTop_toBottomOf="@id/line_results" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_pending_operations"
@@ -122,6 +131,50 @@
                 tools:itemCount="2"
                 tools:listitem="@layout/item_math_operation" />
 
+            <TextView
+                android:id="@+id/tv_no_pending_operations"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_math_operations"
+                app:layout_constraintBottom_toBottomOf="@id/rv_pending_operations"
+                app:layout_constraintEnd_toEndOf="@id/rv_pending_operations"
+                app:layout_constraintStart_toStartOf="@id/rv_pending_operations"
+                app:layout_constraintTop_toTopOf="@id/rv_pending_operations" />
+
+            <TextView
+                android:id="@+id/tv_label_completed_operations"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/label_completed_operations"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rv_pending_operations" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_completed_operations"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_completed_operations"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_math_operation" />
+
+            <TextView
+                android:id="@+id/tv_no_completed_operations"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_math_operations"
+                app:layout_constraintBottom_toBottomOf="@id/rv_completed_operations"
+                app:layout_constraintEnd_toEndOf="@id/rv_completed_operations"
+                app:layout_constraintStart_toStartOf="@id/rv_completed_operations"
+                app:layout_constraintTop_toTopOf="@id/rv_completed_operations" />
+
             <Button
                 android:id="@+id/btn_show_location_info"
                 android:layout_width="wrap_content"
@@ -131,7 +184,7 @@
                 android:text="@string/show_location_info"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rv_pending_operations" />
+                app:layout_constraintTop_toBottomOf="@id/rv_completed_operations" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -6,6 +6,7 @@
     <string name="instructions_calculator_input">Choose an operator, then enter as many operand numbers as you want separated by commas</string>
     <string name="calculate">Calculate</string>
     <string name="label_pending_operations">Pending operations:</string>
+    <string name="label_completed_operations">Completed operations:</string>
     <string name="show_location_info">Show location info</string>
     <string name="label_delay_time">Delay time:</string>
     <string name="hint_calculation_delay">Delay in seconds</string>
@@ -16,5 +17,6 @@
     <string name="item_math_op_operator">Operator: %s</string>
     <string name="item_math_op_operands">Operands: %s</string>
     <string name="item_math_op_delay">Delay: %d seconds</string>
-    <string name="item_math_op_result">Result: %d</string>
+    <string name="item_math_op_result">Result: %f</string>
+    <string name="no_math_operations">There\'re none</string>
 </resources>

@@ -85,14 +85,16 @@ class CalculatorFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupPendingOperationsRecyclerView()
+        setupCompletedOperationsRecyclerView()
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
         viewModel.pendingMathQuestions.observe(viewLifecycleOwner, {
             Log.d(TAG, "pendingMathQuestions = $it")
+
             pendingQuestionsAdapter.updateMathQuestions(it)
-            binding.tvLabelPendingOperations.visibility = if (it.size > 0) {
+            binding.tvNoPendingOperations.visibility = if (it.isEmpty()) {
                 VISIBLE
             } else {
                 GONE
@@ -101,7 +103,13 @@ class CalculatorFragment : Fragment() {
 
         viewModel.completedMathQuestions.observe(viewLifecycleOwner, {
             Log.d(TAG, "completedMathQuestions = $it")
-            // TODO
+
+            completedQuestionsAdapter.updateMathQuestions(it)
+            binding.tvNoCompletedOperations.visibility = if (it.isEmpty()) {
+                VISIBLE
+            } else {
+                GONE
+            }
         })
 
         viewModel.calculateMathQuestionEvent.observe(viewLifecycleOwner, {
@@ -148,6 +156,17 @@ class CalculatorFragment : Fragment() {
 
         pendingQuestionsAdapter = MathOperationsAdapter()
         binding.rvPendingOperations.adapter = pendingQuestionsAdapter
+    }
+
+    private fun setupCompletedOperationsRecyclerView() {
+        binding.rvCompletedOperations.setHasFixedSize(true)
+
+        val itemDecoration: ItemDecoration =
+            DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+        binding.rvCompletedOperations.addItemDecoration(itemDecoration)
+
+        completedQuestionsAdapter = MathOperationsAdapter()
+        binding.rvCompletedOperations.adapter = completedQuestionsAdapter
     }
 
     override fun onDestroyView() {
