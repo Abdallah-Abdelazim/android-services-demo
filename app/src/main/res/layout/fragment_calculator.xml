@@ -98,7 +98,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_label_delay_time" />
 
             <View
-                android:id="@+id/line_results"
+                android:id="@+id/line_results_separator"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_marginTop="16dp"
@@ -117,7 +117,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/line_results" />
+                app:layout_constraintTop_toBottomOf="@id/line_results_separator" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_pending_operations"
@@ -141,6 +141,16 @@
                 app:layout_constraintStart_toStartOf="@id/rv_pending_operations"
                 app:layout_constraintTop_toTopOf="@id/rv_pending_operations" />
 
+            <View
+                android:id="@+id/line_pending_operations_separator"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/light_grey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rv_pending_operations" />
+
             <TextView
                 android:id="@+id/tv_label_completed_operations"
                 android:layout_width="0dp"
@@ -151,7 +161,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rv_pending_operations" />
+                app:layout_constraintTop_toBottomOf="@id/line_pending_operations_separator" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_completed_operations"
@@ -175,6 +185,16 @@
                 app:layout_constraintStart_toStartOf="@id/rv_completed_operations"
                 app:layout_constraintTop_toTopOf="@id/rv_completed_operations" />
 
+            <View
+                android:id="@+id/line_completed_operations_separator"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/light_grey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rv_completed_operations" />
+
             <Button
                 android:id="@+id/btn_show_location_info"
                 android:layout_width="wrap_content"
@@ -185,7 +205,7 @@
                 android:text="@string/show_location_info"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rv_completed_operations" />
+                app:layout_constraintTop_toBottomOf="@id/line_completed_operations_separator" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_location_info"

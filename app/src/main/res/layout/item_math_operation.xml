@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:text="@{String.format(@string/item_math_op_result, mathQuestion.result)}"
+            android:text="@{@string/item_math_op_result + mathQuestion.result}"
             android:textColor="@color/red"
             android:textSize="18sp"
             android:textStyle="bold"

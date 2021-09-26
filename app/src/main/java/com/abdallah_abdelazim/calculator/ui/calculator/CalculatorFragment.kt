@@ -227,13 +227,11 @@ class CalculatorFragment : Fragment() {
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
         if (requestCode == RC_LOCATION_PERMISSIONS &&
             !grantResults.contains(PackageManager.PERMISSION_DENIED)
         ) {
             showLocationInfo()
-        }
+        } else super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
     override fun onDestroyView() {
