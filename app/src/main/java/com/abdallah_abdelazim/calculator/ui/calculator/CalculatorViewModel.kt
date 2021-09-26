@@ -25,6 +25,7 @@ class CalculatorViewModel : ViewModel() {
     val completedMathQuestions: LiveData<List<MathQuestion>> get() = _completedMathQuestions
 
     val calculateMathQuestionEvent = SingleLiveEvent<MathQuestion>()
+    val showLocationInfoEvent = SingleLiveEvent<Void>()
 
     val messageEvent by lazy {
         SingleLiveEvent<Int>()
@@ -57,5 +58,9 @@ class CalculatorViewModel : ViewModel() {
             add(mathQuestion)
             _completedMathQuestions.value = this
         }
+    }
+
+    fun showLocationInfo() {
+        showLocationInfoEvent.call()
     }
 }

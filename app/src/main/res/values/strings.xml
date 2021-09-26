@@ -19,4 +19,6 @@
     <string name="item_math_op_delay">Delay: %d seconds</string>
     <string name="item_math_op_result">Result: %f</string>
     <string name="no_math_operations">There\'re none</string>
+    <string name="location_info">Location info</string>
+    <string name="loading">Loading...</string>
 </resources>
