@@ -192,8 +192,7 @@ class CalculatorFragment : Fragment() {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            ActivityCompat.requestPermissions(
-                requireActivity(),
+            requestPermissions(
                 arrayOf(
                     Manifest.permission.ACCESS_FINE_LOCATION,
                     Manifest.permission.ACCESS_COARSE_LOCATION
@@ -228,7 +227,7 @@ class CalculatorFragment : Fragment() {
         grantResults: IntArray
     ) {
         if (requestCode == RC_LOCATION_PERMISSIONS &&
-            !grantResults.contains(PackageManager.PERMISSION_DENIED)
+            grantResults[0] == PackageManager.PERMISSION_GRANTED
         ) {
             showLocationInfo()
         } else super.onRequestPermissionsResult(requestCode, permissions, grantResults)
