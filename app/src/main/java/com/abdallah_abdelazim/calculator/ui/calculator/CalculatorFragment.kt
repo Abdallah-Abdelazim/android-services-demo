@@ -1,18 +1,15 @@
 package com.abdallah_abdelazim.calculator.ui.calculator
 
-import android.Manifest
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -23,9 +20,6 @@ import com.abdallah_abdelazim.calculator.data.service.mathengine.MathEngineServi
 import com.abdallah_abdelazim.calculator.data.service.mathengine.MathOperator.*
 import com.abdallah_abdelazim.calculator.databinding.FragmentCalculatorBinding
 import com.abdallah_abdelazim.calculator.util.showSnackbar
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationServices
-import com.google.android.gms.tasks.CancellationTokenSource
 
 
 class CalculatorFragment : Fragment() {
@@ -125,10 +119,6 @@ class CalculatorFragment : Fragment() {
             }
         })
 
-        viewModel.showLocationInfoEvent.observe(viewLifecycleOwner, {
-            showLocationInfo()
-        })
-
         viewModel.messageEvent.observe(viewLifecycleOwner, { msgStrResId ->
             showSnackbar(msgStrResId)
         })
@@ -178,59 +168,6 @@ class CalculatorFragment : Fragment() {
 
         completedQuestionsAdapter = MathOperationsAdapter()
         binding.rvCompletedOperations.adapter = completedQuestionsAdapter
-    }
-
-    private fun showLocationInfo() {
-        val fusedLocationClient =
-            LocationServices.getFusedLocationProviderClient(requireContext())
-
-        if (ActivityCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            requestPermissions(
-                arrayOf(
-                    Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-                ),
-                RC_LOCATION_PERMISSIONS
-            )
-        } else {
-            binding.btnShowLocationInfo.setText(R.string.loading)
-            binding.btnShowLocationInfo.isEnabled = false
-
-            val cancellationTokenSource = CancellationTokenSource()
-            fusedLocationClient.getCurrentLocation(
-                LocationRequest.PRIORITY_HIGH_ACCURACY,
-                cancellationTokenSource.token
-            ).addOnCompleteListener(requireActivity()) {
-
-                binding.btnShowLocationInfo.setText(R.string.show_location_info)
-                binding.btnShowLocationInfo.isEnabled = true
-
-                val location = it.result
-
-                binding.cardLocationInfo.visibility = VISIBLE
-                binding.tvLocationLat.text = location.latitude.toString()
-                binding.tvLocationLng.text = location.longitude.toString()
-            }
-        }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        if (requestCode == RC_LOCATION_PERMISSIONS &&
-            grantResults[0] == PackageManager.PERMISSION_GRANTED
-        ) {
-            showLocationInfo()
-        } else super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
     override fun onDestroyView() {
